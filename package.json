@@ -1,0 +1,16 @@
+{
+  "name": "pix2cell",
+  "version": "0.1.0",
+  "description": "A cell based line finder",
+  "main": "service/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "busboy": "^0.2.14",
+    "restify": "^6.3.1"
+  }
+}
