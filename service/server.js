@@ -13,7 +13,7 @@ server.get('/data', (req, res, next) => {
 
 server.post('/post', (req, res, next) => {
     let output, input, model;
-    
+    model = '/home/mpcr/Desktop/out'
     if (!fs.existsSync('/tmp/output')) {
         fs.mkdirSync('/tmp/output')
     }
@@ -28,10 +28,11 @@ server.post('/post', (req, res, next) => {
     let oname = req.files.image.name.split('.png')[0]
     fs.renameSync(input, '/tmp/'+ dirName)
     let spawn = require('child_process').spawn;
-    let argu = ['/home/mpcr/pix2pix-tensorflow/pix2pix.py', '--mode test', '--output_dir', output, '--input_dir', inputDir, '--checkpoint', model]
+    let argu = ['/home/mpcr/Desktop/web_service/simserve/pix2pix-tensorflow/pix2pix.py', '--mode test', '--output_dir', output, '--input_dir', inputDir, '--checkpoint', model]
     let process = spawn('python', argu);
 
-    process.stdout.on('exit', function (data) {
+    process.stdout.on('exit', function (data, data2) {
+	console.log(data, data2)
         let html = fs.readFileSync(output + '/images/' + oname + '-outputs.png')
         res.send(200, html)
       });
